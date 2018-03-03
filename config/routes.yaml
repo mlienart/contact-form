@@ -1,3 +1,11 @@
+contact:
+    path:       /contact
+    controller: App\Controller\AdminController::contact
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
+logout:
+    path:       /logout
+    
+    
+    

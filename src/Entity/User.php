@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * @ORM\Table(name="app_users")
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements AdvancedUserInterface, \Serializable {
@@ -21,7 +21,7 @@ class User implements AdvancedUserInterface, \Serializable {
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $username;
 
@@ -31,7 +31,7 @@ class User implements AdvancedUserInterface, \Serializable {
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $email;
 
