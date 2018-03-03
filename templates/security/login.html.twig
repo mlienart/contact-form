@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    Connexion - {{ parent() }}
+    {{ 'security.login.submit'|trans }} - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -14,14 +14,14 @@
         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
         <div class="form-group">
-            {{ form_label(form._username, 'Nom', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_label(form._username, 'security.login.username', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
             <div class="col-sm-4">
                 {{ form_widget(form._username, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form._username) }}
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(form._password, 'Mot de passe', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_label(form._password, 'security.login.password', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
             <div class="col-sm-4">
                 {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form._password) }}

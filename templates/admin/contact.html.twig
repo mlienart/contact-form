@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    Liste des demandes - {{ parent() }}
+    {{'messages.list'|trans}} - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -19,14 +19,14 @@
                     <div> 
                         <span class="glyphicon glyphicon-user"></span>Bonjour {{ app.user.username }} <span class="caret"></span>
 
-                        <a href="{{ path('logout') }}" class="btn btn-primary"> {{'connection.user.profil.logout'|trans}}</a>
+                        <a href="{{ path('logout') }}" class="btn btn-primary"> {{'security.logout.submit'|trans}}</a>
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
-                        Liste des demandes
+                        {{'messages.list'|trans}}
 
 
                     {% else %}
-                        Vous ne disposez pas des droits d'accès à la liste des demandes
+                        {{'messages.error'|trans}}
                     {% endif %}
 
                 {% endif %}

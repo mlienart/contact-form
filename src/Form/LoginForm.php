@@ -11,37 +11,29 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use App\Entity\User;
 
+/**
+ * LoginForm
+ */
 class LoginForm extends AbstractType {
 
-    public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-                ->add('_username', TextType::class, array(
-                    'constraints' => array(
-                        new NotBlank(array('message' => 'form.name.required')),
-                        new Length(array('min' => 2, 'minMessage' => 'Contenu trop court')),
-                    )
-                ))
+    /**
+     * 
+     * @param FormBuilderInterface $oBuilder
+     * @param array $aOptions
+     */
+    public function buildForm(FormBuilderInterface $oBuilder, array $aOptions) {
+        $oBuilder
+                ->add('_username', TextType::class)
                 ->add('_password', PasswordType::class)
         ;
     }
 
-//    public function getBlockPrefix() {
-//        return "";
-//    }
-//$this->addOption('username_parameter', '_username');
-//        $this->addOption('password_parameter', '_password');
-//        $this->addOption('csrf_parameter', '_csrf_token');
-//        $this->addOption('csrf_token_id', 'authenticate');
-//        $this->addOption('post_only', true);
-    public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
-            //'data_class' => null,
-            // enable/disable CSRF protection for this form
-            'csrf_protection' => true,
-            // the name of the hidden HTML field that stores the token
-            'csrf_field_name' => '_token',
-            // an arbitrary string used to generate the value of the token
-            // using a different string for each form improves its security
+    /**
+     * 
+     * @param OptionsResolver $oResolver
+     */
+    public function configureOptions(OptionsResolver $oResolver) {
+        $oResolver->setDefaults(array(
             'csrf_token_id' => 'authenticate',
         ));
     }

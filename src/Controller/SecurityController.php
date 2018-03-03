@@ -8,32 +8,33 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\LoginForm;
 
 /**
- * 
+ * SecurityController
  */
 class SecurityController extends Controller {
 
     /**
      * 
-     * @param Request $request
-     * @param AuthenticationUtils $authUtils
+     * @param Request $oRequest
+     * @param AuthenticationUtils $oAuthUtils
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function login(Request $request, AuthenticationUtils $authUtils) {
+    public function login(Request $oRequest, AuthenticationUtils $oAuthUtils) {
+
         // Get the login error if there is one
-        $error = $authUtils->getLastAuthenticationError();
+        $oError = $oAuthUtils->getLastAuthenticationError();
 
         // Last username entered by the user
-        $lastUsername = $authUtils->getLastUsername();
+        $sLastUsername = $oAuthUtils->getLastUsername();
 
         // Display form with prefilled username
-        $form = $this->createForm(LoginForm::class, [
-            '_username' => $lastUsername,
+        $oForm = $this->createForm(LoginForm::class, [
+            '_username' => $sLastUsername,
         ]);
 
         // Display login page
         return $this->render('security/login.html.twig', array(
-                    'form' => $form->createView(),
-                    'error' => $error,
+                    'form' => $oForm->createView(),
+                    'error' => $oError,
         ));
     }
 

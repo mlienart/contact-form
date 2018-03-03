@@ -3,4 +3,10 @@ security:
         username: 'Nom d''utilisateur'
         password: 'Mot de passe'
         remember_me: 'Se souvenir de moi'
-        submit: Connexion
+        submit: 'Connexion'
+    logout:
+        submit: 'Déconnexion'
+messages:
+    list: 'Liste des demandes'
+    error: 'Vous ne disposez pas des droits d''accès à la liste des demandes'
+        

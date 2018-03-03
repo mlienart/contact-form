@@ -7,42 +7,60 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * UserFixtures
+ */
 class UserFixtures extends Fixture {
 
+    /**
+     *
+     * @var UserPasswordEncoder
+     */
     private $encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder) {
         $this->encoder = $encoder;
     }
 
+    /**
+     * 
+     * @return UserPasswordEncoder
+     */
     public function getEncoder() {
         return $this->encoder;
     }
 
-    public function load(ObjectManager $manager) {
-        $admin = new User();
-        $admin->setUsername('webmaster');
+    /**
+     * 
+     * @param ObjectManager $oManager
+     */
+    public function load(ObjectManager $oManager) {
 
-        $admin->setPassword($this->getEncoder()->encodePassword($admin, 'test'));
+        // Add user with ROLE_ADMIN
+        $oAdmin = new User();
+        $oAdmin->setUsername('webmaster');
 
-        $admin->setEmail('webmaster@gmail.com');
+        $oAdmin->setPassword($this->getEncoder()->encodePassword($oAdmin, 'test'));
 
-        $admin->setRoles(array('ROLE_ADMIN'));
+        $oAdmin->setEmail('webmaster@gmail.com');
 
-        $manager->persist($admin);
+        $oAdmin->setRoles(array('ROLE_ADMIN'));
 
-        $user = new User();
-        $user->setUsername('user');
+        $oManager->persist($oAdmin);
 
-        $user->setPassword($this->getEncoder()->encodePassword($user, 'test'));
+        // Add user with ROLE_USER
+        $oUser = new User();
+        $oUser->setUsername('user');
 
-        $user->setEmail('user@gmail.com');
+        $oUser->setPassword($this->getEncoder()->encodePassword($oUser, 'test'));
 
-        $user->setRoles(array('ROLE_USER'));
+        $oUser->setEmail('user@gmail.com');
 
-        $manager->persist($user);
+        $oUser->setRoles(array('ROLE_USER'));
 
-        $manager->flush();
+        $oManager->persist($oUser);
+
+        $oManager->flush();
     }
 
 }
