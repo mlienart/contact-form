@@ -1,0 +1,38 @@
+{% extends "layout.html.twig" %}
+
+
+{% block title %}
+    Liste des demandes - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                    <div> 
+                        <span class="glyphicon glyphicon-user"></span>Bonjour {{ app.user.username }} <span class="caret"></span>
+
+                        <a href="{{ path('logout') }}" class="btn btn-primary"> {{'connection.user.profil.logout'|trans}}</a>
+                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        Liste des demandes
+
+
+                    {% else %}
+                        Vous ne disposez pas des droits d'accès à la liste des demandes
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    {% endblock %}
+
