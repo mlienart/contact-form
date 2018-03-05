@@ -18,7 +18,7 @@ class AdminController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function contactsList(Request $oRequest, int $iPage = 1) {
+    public function questions(Request $oRequest, int $iPage = 1) {
 
         if ($iPage < 1) {
             throw new NotFoundHttpException('Page "' . $iPage . '" inexistante.');
@@ -31,14 +31,14 @@ class AdminController extends Controller {
 
         $iNbPages = ceil(count($aContacts) / $iNbPerPage);
 
-        return $this->render('admin/contacts-list.html.twig', array(
+        return $this->render('admin/questions.html.twig', array(
                     'contacts' => $aContacts,
                     'nbPages' => $iNbPages,
                     'page' => $iPage
         ));
 
         // Display contact page
-        return $this->render('admin/contacts-list.html.twig', array(
+        return $this->render('admin/questions.html.twig', array(
         ));
     }
 

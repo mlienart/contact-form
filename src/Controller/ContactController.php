@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-use App\Form\Type\ContactType;
+use App\Form\Type\ContactFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +19,7 @@ class ContactController extends Controller {
         $oContact = new Contact();
 
         // Create contact form
-        $oContactForm = $this->createForm(ContactType::class, $oContact);
+        $oContactForm = $this->createForm(ContactFormType::class, $oContact);
 
         // Initially, the message shown to the visitor is empty
         $sMessage = '';

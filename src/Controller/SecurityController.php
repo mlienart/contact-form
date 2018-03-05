@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App\Form\LoginForm;
+use App\Form\Type\LoginFormType;
 
 /**
  * SecurityController
@@ -27,7 +27,7 @@ class SecurityController extends Controller {
         $sLastUsername = $oAuthUtils->getLastUsername();
 
         // Display form with prefilled username
-        $oForm = $this->createForm(LoginForm::class, [
+        $oForm = $this->createForm(LoginFormType::class, [
             '_username' => $sLastUsername,
         ]);
 

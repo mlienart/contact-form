@@ -1,6 +1,6 @@
 contacts_list:
-    path:       /admin/contactsList/{iPage}
-    controller: App\Controller\AdminController::contactsList
+    path:       /admin/questions/{iPage}
+    controller: App\Controller\AdminController::questions
     defaults:
         iPage: 1
     requirements:

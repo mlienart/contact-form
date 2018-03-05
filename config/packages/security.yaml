@@ -22,7 +22,7 @@ security:
                 username_parameter: "login_form[_username]"
                 password_parameter: "login_form[_password]"
                 csrf_parameter: "login_form[_token]"
-                default_target_path: /admin/contacts_list
+                default_target_path: /admin/questions
             logout:
                 path:       /logout
                 target:     /login
