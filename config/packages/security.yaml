@@ -22,7 +22,7 @@ security:
                 username_parameter: "login_form[_username]"
                 password_parameter: "login_form[_password]"
                 csrf_parameter: "login_form[_token]"
-                default_target_path: contact
+                default_target_path: /admin/contacts_list
             logout:
                 path:       /logout
                 target:     /login
@@ -39,4 +39,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/, roles: [ROLE_ADMIN, ROLE_USER] }
+       - { path: ^/contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_USER] }

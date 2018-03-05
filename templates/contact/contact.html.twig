@@ -1,0 +1,66 @@
+{% extends "layout.html.twig" %}
+
+
+{% block title %}
+    {{'Contact'|trans}} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+    {#    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="g-recaptcha" data-sitekey="6LcnbkoUAAAAACIUXToJsgimGLj2XcNVEk-Ozh3g"></div>
+        {{ form_end(form) }}#}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 well">
+                {% if message is not empty %}
+                    <p>{{ message }}</p>
+                {% endif %}
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                <div class="form-group">
+                    {{ form_label(form.username, 'Nom', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.username) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.subject, 'Sujet', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form.subject, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.subject) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.message, 'Question', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+                <div class="form-group">
+                    <div class="col-sm-4 g-recaptcha" data-sitekey="6LcnbkoUAAAAACIUXToJsgimGLj2XcNVEk-Ozh3g"></div>
+                </div>
+                <input type="submit" id="_submit" name="_submit" value="Envoyer" class="btn btn-success"/>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

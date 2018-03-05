@@ -1,0 +1,68 @@
+{% extends "layout.html.twig" %}
+
+
+{% block title %}
+    {{'messages.list'|trans}} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                    <div> 
+                        <span class="glyphicon glyphicon-user"></span>Bonjour {{ app.user.username }} <span class="caret"></span>
+
+                        <a href="{{ path('logout') }}" class="btn btn-primary"> {{'security.logout.submit'|trans}}</a>
+                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {{'messages.list'|trans}}
+
+                        {% if contacts|length > 0 %}
+                            <table class="contacts-list">
+                                <tr class="contacts-list-th">
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Sujet</th>
+                                    <th>Message</th>
+
+                                </tr>
+                                {% for contact in contacts %}
+                                    <tr>
+                                        <td>{{ contact.username }}</td>
+                                        <td>{{ contact.email }}</td>
+                                        <td>{{ contact.subject }}</td>
+                                        <td>{{ contact.message }}</td>
+
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
+                        <ul class="pagination">
+                            {% if nbPages > 1 %}
+                                {% for p in range(1, nbPages) %}
+                                    <li{% if p == page %} class="active"{% endif %}>
+                                        <a href="{{ path('contacts_list', {'iPage': p}) }}">{{ p }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+
+
+                    {% else %}
+                        {{'messages.error'|trans}}
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    {% endblock %}
+

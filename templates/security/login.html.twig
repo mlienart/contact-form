@@ -6,31 +6,34 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 well">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-    <div class="well">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="form-group">
+                    {{ form_label(form._username, 'security.login.username', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form._username, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form._username) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form._password, 'security.login.password', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form._password) }}
+                    </div>
+                </div>
+                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-success"/>
 
-        <div class="form-group">
-            {{ form_label(form._username, 'security.login.username', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-            <div class="col-sm-4">
-                {{ form_widget(form._username, {'attr': {'class': 'form-control'}}) }}
-                {{ form_errors(form._username) }}
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
             </div>
         </div>
-        <div class="form-group">
-            {{ form_label(form._password, 'security.login.password', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-            <div class="col-sm-4">
-                {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
-                {{ form_errors(form._password) }}
-            </div>
-        </div>
-        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-success"/>
-
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
     </div>
 {% endblock %}
 

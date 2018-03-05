@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="contacts")
@@ -22,30 +23,51 @@ class Contact {
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=50, unique=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Le nom ne doit pas dépasser {{ limit }} caractères"
+     * )
+     * @ORM\Column(name="username", type="string", length=50)
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
-     *
+     * 
+     * @ORM\Column(name="email", type="string", length=50)
+     * @Assert\Email(
+     *      message = "Le email '{{ value }}' n'est pas valide",
+     * )
+     */
+    protected $email;
+
+    /**
+     * @var string
+     * 
      * @ORM\Column(name="subject", type="string", length=50)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 50,
+     *      minMessage = "Le sujet doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Le sujet ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
-    private $subject;
+    protected $subject;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50, unique=true)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
+     * 
      * @ORM\Column(name="message", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le message doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Le message ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
-    private $message;
+    protected $message;
 
     /**
      * Get id
@@ -79,28 +101,6 @@ class Contact {
     }
 
     /**
-     * Get subject
-     *
-     * @return string
-     */
-    public function getSubject() {
-        return $this->subject;
-    }
-
-    /**
-     * Set subject
-     *
-     * @param string $subject
-     *
-     * @return Contact
-     */
-    public function setSubject($subject) {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    /**
      * Get email
      *
      * @return string
@@ -118,6 +118,28 @@ class Contact {
      */
     public function setEmail($email) {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string
+     */
+    public function getSubject() {
+        return $this->subject;
+    }
+
+    /**
+     * Set subject
+     *
+     * @param string $subject
+     *
+     * @return Contact
+     */
+    public function setSubject($subject) {
+        $this->subject = $subject;
 
         return $this;
     }

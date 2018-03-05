@@ -1,7 +1,12 @@
+parameters:
+    captcha_secret: '%env(CAPTCHA_SECRET)%'
+    captcha_secret_api: '%env(CAPTCHA_SECRET_API)%'
+    captcha_verify_api: 'https://www.google.com/recaptcha/api/siteverify'
+    nb_contacts: 20
+
 framework:
     secret: '%env(APP_SECRET)%'
     #default_locale: en
-    #csrf_protection: true
     #http_method_override: true
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.

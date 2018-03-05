@@ -1,11 +1,12 @@
-contact:
-    path:       /contact
-    controller: App\Controller\AdminController::contact
+contacts_list:
+    path:       /admin/contactsList/{iPage}
+    controller: App\Controller\AdminController::contactsList
+    defaults:
+        iPage: 1
+    requirements:
+        iPage: \d+
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
 logout:
     path:       /logout
-    
-    
-    
