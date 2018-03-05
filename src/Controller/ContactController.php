@@ -14,7 +14,7 @@ class ContactController extends Controller {
     /**
      * @Route("/contact")
      */
-    public function getForm(Request $oRequest) {
+    public function getForm(Request $oRequest, \Swift_Mailer $oMailer) {
 
         $oContact = new Contact();
 
@@ -43,12 +43,14 @@ class ContactController extends Controller {
                 // Send mail
                 $oMessage = (new \Swift_Message())
                         ->setContentType('text/html')
+                        ->setFrom('send@example.com')
+                        ->setTo('recipient@example.com')
                         ->setSubject($oContact->getSubject())
                         ->setFrom($oContact->getEmail())
                         ->setTo('magalilienart@gmail.com')
                         ->setBody($oContact->getMessage());
 
-                $this->mailer->send($oMessage);
+                $oMailer->send($oMessage);
                 $sMessage = 'Message envoyé';
             }
         }
