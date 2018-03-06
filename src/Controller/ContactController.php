@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\Type\ContactFormType;
+use App\Form\Handler\ContactHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,17 +44,28 @@ class ContactController extends Controller {
                 $oEntityManager->persist($oContact);
                 $oEntityManager->flush();
 
-                // Send mail
-                $oMessage = (new \Swift_Message())
-                        ->setContentType('text/html')
-                        ->setFrom('send@example.com')
-                        ->setTo('recipient@example.com')
-                        ->setSubject($oContact->getSubject())
-                        ->setFrom($oContact->getEmail())
-                        ->setTo('magalilienart@gmail.com')
-                        ->setBody($oContact->getMessage());
 
-                $oMailer->send($oMessage);
+                // Get the handler
+                $oContactFormHandler = new ContactHandler($oRequest, $oMailer, $oContact);
+
+                // Send mail
+                $process = $oContactFormHandler->process();
+
+                if ($process) {
+                    $sMessage = 'Message envoyé';
+                }
+
+                // Send mail
+//                $oMessage = (new \Swift_Message())
+//                        ->setContentType('text/html')
+//                        ->setFrom('send@example.com')
+//                        ->setTo('recipient@example.com')
+//                        ->setSubject($oContact->getSubject())
+//                        ->setFrom($oContact->getEmail())
+//                        ->setTo('magalilienart@gmail.com')
+//                        ->setBody($oContact->getMessage());
+//
+//                $oMailer->send($oMessage);
                 $sMessage = 'Message envoyé';
             }
         }

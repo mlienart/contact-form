@@ -10,8 +10,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
+/**
+ * ContactFormType
+ */
 class ContactFormType extends AbstractType {
 
+    /**
+     * 
+     * @param FormBuilderInterface $oBuilder
+     * @param array $oOptions
+     */
     public function buildForm(FormBuilderInterface $oBuilder, array $oOptions) {
         $oBuilder
                 ->add('username', TextType::class)
