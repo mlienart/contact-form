@@ -14,6 +14,7 @@ class ContactHandler {
     protected $request;
     protected $mailer;
     protected $contact;
+    protected $contactEmail;
 
     /**
      * Initialize the handler with the form and the request
@@ -21,10 +22,11 @@ class ContactHandler {
      * @param \Swift_Mailer $oMailer
      * @param Contact $oContact
      */
-    public function __construct(Request $oRequest, \Swift_Mailer $oMailer, Contact $oContact) {
+    public function __construct(Request $oRequest, \Swift_Mailer $oMailer, Contact $oContact, $sContactEmail) {
         $this->setRequest($oRequest);
         $this->setContact($oContact);
         $this->setMailer($oMailer);
+        $this->setContactEmail($sContactEmail);
     }
 
     /**
@@ -42,7 +44,7 @@ class ContactHandler {
      * @param \Symfony\Component\HttpFoundation\Request $oRequest
      * @return ContactHandler
      */
-    public function setRequest($oRequest) {
+    public function setRequest(Request $oRequest) {
         $this->request = $oRequest;
         return $this;
     }
@@ -62,8 +64,28 @@ class ContactHandler {
      * @param \App\Entity\Contact $oContact
      * @return ContactHandler
      */
-    public function setContact($oContact) {
+    public function setContact(Contact $oContact) {
         $this->contact = $oContact;
+        return $this;
+    }
+
+    /**
+     * Get contactEmail
+     *
+     * @return \App\Entity\Contact
+     */
+    public function getContactEmail() {
+        return $this->contactEmail;
+    }
+
+    /**
+     * Set contactEmail
+     *
+     * @param \App\Entity\Contact $oContactEmail
+     * @return ContactHandler
+     */
+    public function setContactEmail(Contact $oContactEmail) {
+        $this->contactEmail = $oContactEmail;
         return $this;
     }
 
@@ -82,7 +104,7 @@ class ContactHandler {
      * @param \Swift_Mailer $oMailer
      * @return ContactHandler
      */
-    public function setMailer($oMailer) {
+    public function setMailer(\Swift_Mailer $oMailer) {
         $this->mailer = $oMailer;
         return $this;
     }
@@ -96,12 +118,9 @@ class ContactHandler {
 
         // Check the method
         if ('POST' == $this->getRequest()->getMethod()) {
-
             $this->onSuccess($this->getContact());
-
             return true;
         }
-
         return false;
     }
 
@@ -118,7 +137,7 @@ class ContactHandler {
                 ->setContentType('text/html')
                 ->setSubject($oContact->getSubject())
                 ->setFrom($oContact->getEmail())
-                ->setTo('magalilienart@gmail.com') //TODO extraire
+                ->setTo($this->getContactEmail())
                 ->setBody($oContact->getMessage());
 
         $this->getMailer()->send($oMessage);

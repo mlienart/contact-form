@@ -40,6 +40,7 @@ Le projet a été réalisé en Symfony 4 suite à votre accord téléphonique
 - rédiger une documentation
 - évolutions / nouvelles fonctionnalités possibles:
     * authentification via token (utilisation de Guard)
+    * fonctionnalité "Se souvenir de moi" sur la page d'authentification
     * permettre tri du tableau des demandes du BO sur les différents champs disponibles 
     * ajout d'un filtre sur le statut traité ou non et un filtre sur la date pour filtrer les demandes dans la BO
     * ajouter une icône de chargement lors du passage d'une demande en traité dans le BO

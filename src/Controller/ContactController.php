@@ -44,9 +44,8 @@ class ContactController extends Controller {
                 $oEntityManager->persist($oContact);
                 $oEntityManager->flush();
 
-
                 // Get the handler
-                $oContactFormHandler = new ContactHandler($oRequest, $oMailer, $oContact);
+                $oContactFormHandler = new ContactHandler($oRequest, $oMailer, $oContact, $this->getParameter('contact_email'));
 
                 // Send mail
                 $process = $oContactFormHandler->process();
@@ -61,6 +60,7 @@ class ContactController extends Controller {
         return $this->render('contact/contact.html.twig', array(
                     'form' => $oContactForm->createView(),
                     'captcha_secret' => $this->getParameter('captcha_secret'),
+                    'captcha_api' => $this->getParameter('captcha_api'),
                     'message' => $sMessage
         ));
     }

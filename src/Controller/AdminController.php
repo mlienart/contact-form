@@ -49,7 +49,6 @@ class AdminController extends Controller {
      */
     public function treatQuestion(Request $oRequest) {
 
-
         $iContactId = (int) $oRequest->get('id');
 
         // Retrieve contact by id $id

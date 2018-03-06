@@ -1,4 +1,5 @@
 parameters:
+    contact_email: '%env(CONTACT_EMAIL)%'
     captcha_secret: '%env(CAPTCHA_SECRET)%'
     captcha_secret_api: '%env(CAPTCHA_SECRET_API)%'
     captcha_api: 'https://www.google.com/recaptcha/api.js'
