@@ -72,7 +72,7 @@ class ContactHandler {
     /**
      * Get contactEmail
      *
-     * @return \App\Entity\Contact
+     * @return string
      */
     public function getContactEmail() {
         return $this->contactEmail;
@@ -81,11 +81,11 @@ class ContactHandler {
     /**
      * Set contactEmail
      *
-     * @param \App\Entity\Contact $oContactEmail
+     * @param string $sContactEmail
      * @return ContactHandler
      */
-    public function setContactEmail(Contact $oContactEmail) {
-        $this->contactEmail = $oContactEmail;
+    public function setContactEmail($sContactEmail) {
+        $this->contactEmail = $sContactEmail;
         return $this;
     }
 

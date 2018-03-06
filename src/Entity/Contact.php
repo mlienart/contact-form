@@ -32,8 +32,8 @@ class Contact {
      * @Assert\Length(
      *      min = 2,
      *      max = 50,
-     *      minMessage = "Le nom doit faire plus de {{ limit }} caractères",
-     *      maxMessage = "Le nom ne doit pas dépasser {{ limit }} caractères"
+     *      minMessage = "Votre nom doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne doit pas dépasser {{ limit }} caractères"
      * )
      * @ORM\Column(name="username", type="string", length=50)
      */
@@ -44,7 +44,7 @@ class Contact {
      * 
      * @ORM\Column(name="email", type="string", length=50)
      * @Assert\Email(
-     *      message = "Le email '{{ value }}' n'est pas valide",
+     *      message = "Votre email '{{ value }}' n'est pas valide",
      * )
      */
     protected $email;
@@ -56,8 +56,8 @@ class Contact {
      * @Assert\Length(
      *      min = 1,
      *      max = 50,
-     *      minMessage = "Le sujet doit faire plus de {{ limit }} caractères",
-     *      maxMessage = "Le sujet ne doit pas dépasser {{ limit }} caractères"
+     *      minMessage = "Votre sujet doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Votre sujet ne doit pas dépasser {{ limit }} caractères"
      * )
      */
     protected $subject;
@@ -69,8 +69,8 @@ class Contact {
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Le message doit faire plus de {{ limit }} caractères",
-     *      maxMessage = "Le message ne doit pas dépasser {{ limit }} caractères"
+     *      minMessage = "Votre question doit faire plus de {{ limit }} caractères",
+     *      maxMessage = "Votre question ne doit pas dépasser {{ limit }} caractères"
      * )
      */
     protected $message;
