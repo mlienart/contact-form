@@ -10,6 +10,10 @@ treat_question:
     path:       /admin/treat_question
     controller: App\Controller\AdminController::treatQuestion
 
+contact:
+    path:       /contact
+    controller: App\Controller\ContactController::getContactForm
+
 login:
     path:       /login
     controller: App\Controller\SecurityController::login

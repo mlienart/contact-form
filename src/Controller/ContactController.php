@@ -12,9 +12,12 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 class ContactController extends Controller {
 
     /**
-     * @Route("/contact")
+     * 
+     * @param Request $oRequest
+     * @param \Swift_Mailer $oMailer
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getForm(Request $oRequest, \Swift_Mailer $oMailer) {
+    public function getContactForm(Request $oRequest, \Swift_Mailer $oMailer) {
 
         $oContact = new Contact();
 
