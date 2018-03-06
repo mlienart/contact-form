@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "090d097ecc021a00f640d59355760bfb",
+    "content-hash": "6e10003688efbccde57b9c7348e4caad",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3430,7 +3430,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",

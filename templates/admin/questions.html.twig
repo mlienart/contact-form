@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    {{'messages.list'|trans}} - {{ parent() }}
+    Liste des demandes - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        {{'messages.list'|trans}}
+                        Liste des demandes
 
                         {% if contacts|length > 0 %}
                             <table class="contacts-list">
@@ -66,7 +66,7 @@
 
 
                     {% else %}
-                        {{'messages.error'|trans}}
+                        Vous ne disposez pas des droits d''accès à la liste des demandes
                     {% endif %}
 
 

@@ -54,18 +54,6 @@ class ContactController extends Controller {
                 if ($process) {
                     $sMessage = 'Message envoyé';
                 }
-
-                // Send mail
-//                $oMessage = (new \Swift_Message())
-//                        ->setContentType('text/html')
-//                        ->setFrom('send@example.com')
-//                        ->setTo('recipient@example.com')
-//                        ->setSubject($oContact->getSubject())
-//                        ->setFrom($oContact->getEmail())
-//                        ->setTo('magalilienart@gmail.com')
-//                        ->setBody($oContact->getMessage());
-//
-//                $oMailer->send($oMessage);
                 $sMessage = 'Message envoyé';
             }
         }
