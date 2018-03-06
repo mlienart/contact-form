@@ -8,8 +8,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="contacts")
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Contact {
+
+    public function __construct() {
+
+        $this->setCreatedAt(new \Datetime());
+    }
 
     /**
      * @var int
@@ -68,6 +74,23 @@ class Contact {
      * )
      */
     protected $message;
+
+    /**
+     * @ORM\Column(name="done", type="boolean")
+     */
+    private $done = false;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     /**
      * Get id
@@ -164,6 +187,79 @@ class Contact {
         $this->message = $message;
 
         return $this;
+    }
+
+    /**
+     * Get done
+     *
+     * @return string
+     */
+    public function getDone() {
+        return $this->done;
+    }
+
+    /**
+     * Set done
+     *
+     * @param string $done
+     *
+     * @return Contact
+     */
+    public function setDone($done) {
+        $this->done = $done;
+
+        return $this;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Contact
+     */
+    public function setCreatedAt($createdAt) {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Contact
+     */
+    public function setUpdatedAt(\Datetime $updatedAt) {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate() {
+        $this->setUpdatedAt(new \Datetime());
     }
 
 }

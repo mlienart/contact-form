@@ -7,13 +7,6 @@
 
 {% block body %}
 
-
-    {#    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div class="g-recaptcha" data-sitekey="6LcnbkoUAAAAACIUXToJsgimGLj2XcNVEk-Ozh3g"></div>
-        {{ form_end(form) }}#}
-
-
     <div class="container">
         <div class="row">
             <div class="col-12 well">
@@ -53,7 +46,7 @@
 
                 {{ form_rest(form) }}
                 <div class="form-group">
-                    <div class="col-sm-4 g-recaptcha" data-sitekey="6LcnbkoUAAAAACIUXToJsgimGLj2XcNVEk-Ozh3g"></div>
+                    <div class="col-sm-4 g-recaptcha" data-sitekey="{{ captcha_secret }}"></div>
                 </div>
                 <input type="submit" id="_submit" name="_submit" value="Envoyer" class="btn btn-success"/>
 

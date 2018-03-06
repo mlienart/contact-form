@@ -5,8 +5,14 @@ contacts_list:
         iPage: 1
     requirements:
         iPage: \d+
+        
+treat_question:
+    path:       /admin/treat_question
+    controller: App\Controller\AdminController::treatQuestion
+
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
+
 logout:
     path:       /logout

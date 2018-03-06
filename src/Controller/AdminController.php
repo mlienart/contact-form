@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -37,9 +38,39 @@ class AdminController extends Controller {
                     'page' => $iPage
         ));
 
-        // Display contact page
-        return $this->render('admin/questions.html.twig', array(
-        ));
+        // Display questions list page
+        return $this->render('admin/questions.html.twig', array());
+    }
+
+    /**
+     * 
+     * @param Request $oRequest
+     * @throws NotFoundHttpException
+     */
+    public function treatQuestion(Request $oRequest) {
+
+
+        $iContactId = (int) $oRequest->get('id');
+
+        // Retrieve contact by id $id
+        $oContact = $this->getDoctrine()->getManager()->getRepository(Contact::class)->find($iContactId);
+
+        $aMessages = array();
+        $bSuccess = true;
+        if (null === $oContact) {
+            $aMessages[] = "Le contact d'id " . $iContactId . " n'existe pas.";
+            $bSuccess = false;
+        } else {
+            $isDone = $oRequest->get('done') === 'true' ? true : false;
+            $oContact->setDone($isDone);
+
+            // Update done field in contact entity 
+            $oEntityManager = $this->getDoctrine()->getManager();
+            $oEntityManager->persist($oContact);
+            $oEntityManager->flush();
+            $aMessages[] = 'Le contact ' . $oContact->getUsername() . ' - ' . $oContact->getEmail() . ' a été mis à jour.';
+        }
+        return $this->json(array('messages' => $aMessages, 'success' => $bSuccess));
     }
 
 }

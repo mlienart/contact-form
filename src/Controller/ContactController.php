@@ -57,6 +57,7 @@ class ContactController extends Controller {
 
         return $this->render('contact/contact.html.twig', array(
                     'form' => $oContactForm->createView(),
+                    'captcha_secret' => $this->getParameter('captcha_secret'),
                     'message' => $sMessage
         ));
     }

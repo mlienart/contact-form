@@ -7,20 +7,22 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-
-            <div class="col-sm-6">
-
-            </div>
-            <div class="col-sm-6">
-
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div class="row">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
                     <div> 
                         <span class="glyphicon glyphicon-user"></span>Bonjour {{ app.user.username }} <span class="caret"></span>
-
                         <a href="{{ path('logout') }}" class="btn btn-primary"> {{'security.logout.submit'|trans}}</a>
                     </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
                     {% if is_granted('ROLE_ADMIN') %}
                         {{'messages.list'|trans}}
 
@@ -31,7 +33,11 @@
                                     <th>Email</th>
                                     <th>Sujet</th>
                                     <th>Message</th>
-
+                                    <th>Date de création</th>
+                                    <th>Date de mise à jour</th>
+                                    <th>
+                                        <img class="question-help" title="Veuillez cocher la case pour indiquer que la demande a été traitée" srcset="{{ asset('images/question.svg')}}"/>
+                                        Traité</th>
                                 </tr>
                                 {% for contact in contacts %}
                                     <tr>
@@ -39,10 +45,14 @@
                                         <td>{{ contact.email }}</td>
                                         <td>{{ contact.subject }}</td>
                                         <td>{{ contact.message }}</td>
-
+                                        <td>{{ contact.createdAt|date('d/m/Y') }}</td>
+                                        <td>{{ contact.updatedAt|date('d/m/Y') }}</td>
+                                        <td><input type="checkbox" class="contact-done" value="on" {% if contact.done is same as(true) %}checked="checked"{% endif %} data-url="{{ path('treat_question') }}" data-contact-id="{{ contact.id }}" /></td>
                                     </tr>
+
                                 {% endfor %}
                             </table>
+                            <span class="treat-question"></span>
                         {% endif %}
                         <ul class="pagination">
                             {% if nbPages > 1 %}
@@ -59,10 +69,12 @@
                         {{'messages.error'|trans}}
                     {% endif %}
 
-                {% endif %}
+
+                </div>
 
             </div>
-        </div>
+        {% endif %}
+    </div>
 
-    {% endblock %}
+{% endblock %}
 
