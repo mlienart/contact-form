@@ -116,11 +116,9 @@ class ContactHandler {
         // Send mail
         $oMessage = (new \Swift_Message())
                 ->setContentType('text/html')
-                ->setFrom('send@example.com')
-                ->setTo('recipient@example.com')
                 ->setSubject($oContact->getSubject())
                 ->setFrom($oContact->getEmail())
-                ->setTo('magalilienart@gmail.com')
+                ->setTo('magalilienart@gmail.com') //TODO extraire
                 ->setBody($oContact->getMessage());
 
         $this->getMailer()->send($oMessage);

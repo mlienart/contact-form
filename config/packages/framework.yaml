@@ -1,6 +1,7 @@
 parameters:
     captcha_secret: '%env(CAPTCHA_SECRET)%'
     captcha_secret_api: '%env(CAPTCHA_SECRET_API)%'
+    captcha_api: 'https://www.google.com/recaptcha/api.js'
     captcha_verify_api: 'https://www.google.com/recaptcha/api/siteverify'
     nb_contacts: 20
 
