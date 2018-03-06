@@ -46,7 +46,7 @@
                                         <td>{{ contact.subject }}</td>
                                         <td>{{ contact.message }}</td>
                                         <td>{{ contact.createdAt|date('d/m/Y') }}</td>
-                                        <td>{{ contact.updatedAt|date('d/m/Y') }}</td>
+                                        <td class="contact-updated">{{ contact.updatedAt|date('d/m/Y') }}</td>
                                         <td><input type="checkbox" class="contact-done" value="on" {% if contact.done is same as(true) %}checked="checked"{% endif %} data-url="{{ path('treat_question') }}" data-contact-id="{{ contact.id }}" /></td>
                                     </tr>
 

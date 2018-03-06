@@ -57,6 +57,8 @@ class AdminController extends Controller {
 
         $aMessages = array();
         $bSuccess = true;
+        $sUpdatedAt = '';
+
         if (null === $oContact) {
             $aMessages[] = "Le contact d'id " . $iContactId . " n'existe pas.";
             $bSuccess = false;
@@ -69,8 +71,9 @@ class AdminController extends Controller {
             $oEntityManager->persist($oContact);
             $oEntityManager->flush();
             $aMessages[] = 'Le contact ' . $oContact->getUsername() . ' - ' . $oContact->getEmail() . ' a été mis à jour.';
+            $sUpdatedAt = $oContact->getUpdatedAt()->format('d/m/Y');
         }
-        return $this->json(array('messages' => $aMessages, 'success' => $bSuccess));
+        return $this->json(array('messages' => $aMessages, 'success' => $bSuccess, 'updatedAt' => $sUpdatedAt));
     }
 
 }
