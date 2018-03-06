@@ -21,9 +21,12 @@ Le projet a été réalisé en Symfony 4
 
 ## TODO list
 - ajouter des tests unitaires
+- ajouter des vérifications sur les types de variables (notamment dans les getters et setters)
 - utiliser des traductions
 - évolutions / nouvelles fonctionnalités possibles:
     * authentification via token (utilisation de Guard)
-    * permettre tri du tableau des demandes sur les différents champs disponibles 
+    * permettre tri du tableau des demandes du BO sur les différents champs disponibles 
+    * ajouter une icône de chargement lors du passage d'une demande en traité dans le BO
     * internationalisation (ajouter la locale dans les urls...)
+    * personnaliser les pages d'erreur 
     * ...

@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * ContactRepository
  *
@@ -30,7 +32,7 @@ class ContactRepository extends \Doctrine\ORM\EntityRepository {
                 ->setFirstResult(($iPage - 1) * $iNbPerPage)
                 ->setMaxResults($iNbPerPage);
 
-        return new \Doctrine\ORM\Tools\Pagination\Paginator($oQuery, false);
+        return new Paginator($oQuery, false);
     }
 
 }
