@@ -24,7 +24,10 @@ class AdminController extends Controller {
         if ($iPage < 1) {
             throw new NotFoundHttpException('Page "' . $iPage . '" inexistante.');
         }
+        // Number of contacts by page
         $iNbPerPage = $this->getParameter('nb_contacts');
+        
+        // Retrieve contacts
         $aContacts = $this->getDoctrine()
                 ->getManager()
                 ->getRepository(\App\Entity\Contact::class)
